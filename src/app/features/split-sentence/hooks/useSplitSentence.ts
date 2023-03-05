@@ -15,9 +15,14 @@ export const useSplitSentence = () => {
     setChunks(chunks);
   };
 
+  const handleClearChunks = () => {
+    setChunks([]);
+  };
+
   return {
     chunks,
     handleSplitSentence,
+    handleClearChunks,
   };
 };
 

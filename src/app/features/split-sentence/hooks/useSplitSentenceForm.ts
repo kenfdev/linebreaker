@@ -28,6 +28,9 @@ type UseSplitSentenceFormReturn = {
   handleSubmit: (
     onSubmit: (values: SubmitValues) => void
   ) => (event: React.FormEvent<HTMLFormElement>) => void;
+  handleReset: (
+    onReset: () => void
+  ) => (event: React.FormEvent<HTMLFormElement>) => void;
   handleInputChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -85,10 +88,24 @@ export const useSplitSentenceForm = (
     };
   };
 
+  const handleReset = (onReset: () => void) => {
+    return (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      setForm({
+        ...form,
+        sentence: '',
+      });
+      setErrors({});
+
+      onReset();
+    };
+  };
+
   return {
     form,
     errors,
     handleSubmit,
+    handleReset,
     handleInputChange,
   };
 };

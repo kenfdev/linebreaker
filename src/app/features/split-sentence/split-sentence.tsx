@@ -6,7 +6,7 @@ import { Box, Container, Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
 
 const SplitSentence = () => {
-  const { chunks, handleSplitSentence } = useSplitSentence();
+  const { chunks, handleSplitSentence, handleClearChunks } = useSplitSentence();
   return (
     <Container maxW="container.xl">
       <Heading as="h1" size="xl" mb="2rem">
@@ -14,7 +14,10 @@ const SplitSentence = () => {
       </Heading>
       <Flex direction="column" width="100%">
         <Box mb="2rem">
-          <SplitSentenceForm onSubmit={handleSplitSentence} />
+          <SplitSentenceForm
+            onSubmit={handleSplitSentence}
+            onReset={handleClearChunks}
+          />
         </Box>
         <Box>
           <ChunkList chunks={chunks} />

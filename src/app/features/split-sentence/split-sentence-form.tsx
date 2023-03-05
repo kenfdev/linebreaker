@@ -7,6 +7,7 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  HStack,
   Input,
   Textarea,
 } from '@chakra-ui/react';
@@ -20,14 +21,19 @@ export type SubmitValues = {
 
 type Props = {
   onSubmit: (values: SubmitValues) => void;
+  onReset: () => void;
 };
 
-const SplitSentenceForm: FC<Props> = ({ onSubmit }) => {
-  const { form, errors, handleInputChange, handleSubmit } =
+const SplitSentenceForm: FC<Props> = ({ onSubmit, onReset }) => {
+  const { form, errors, handleInputChange, handleSubmit, handleReset } =
     useSplitSentenceForm();
 
   return (
-    <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      style={{ width: '100%' }}
+      onSubmit={handleSubmit(onSubmit)}
+      onReset={handleReset(onReset)}
+    >
       <FormControl mb="1rem" isInvalid={!!errors.chunkLength}>
         <FormLabel>Chunk Length</FormLabel>
         <Input
@@ -66,9 +72,14 @@ const SplitSentenceForm: FC<Props> = ({ onSubmit }) => {
           <FormErrorMessage>{errors.sentence}</FormErrorMessage>
         )}
       </FormControl>
-      <Button type="submit" colorScheme="blue">
-        Split
-      </Button>
+      <HStack>
+        <Button type="submit" colorScheme="blue">
+          Split
+        </Button>
+        <Button type="reset" colorScheme="gray">
+          Reset
+        </Button>
+      </HStack>
     </form>
   );
 };
