@@ -19,7 +19,7 @@ export type FormElements = {
 };
 
 type Props = {
-  defaultValues: FormValues;
+  defaultValues?: FormValues;
 };
 
 type UseSplitSentenceFormReturn = {
@@ -40,7 +40,7 @@ export const useSplitSentenceForm = (
     splitCharacter = '.',
     chunkLength = 2000,
     sentence = '',
-  } = defaultValues;
+  } = defaultValues ?? {};
 
   const { validateForm } = useSplitSentenceFormValidation();
 

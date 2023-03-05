@@ -66,7 +66,9 @@ const SplitSentenceForm: FC<Props> = ({ onSubmit }) => {
           <FormErrorMessage>{errors.sentence}</FormErrorMessage>
         )}
       </FormControl>
-      <Button type="submit">Split</Button>
+      <Button type="submit" colorScheme="blue">
+        Split
+      </Button>
     </form>
   );
 };
